@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Введите число</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="number" name="number">
+        <button type="submit">Сохранить</button>
+    </form>
+    
+    {% if number %}
+        <p>Последнее сохраненное число: {{ number }}</p>
+    {% else %}
+        <p>Число еще не сохранено</p>
+    {% endif %}
+    
+</body>
+</html>

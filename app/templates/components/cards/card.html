@@ -1,0 +1,96 @@
+<div class="product-card">
+    <div class="product-image">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <div class="no-image">Нет изображения</div>
+        {% endif %}
+    </div>
+    <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-brand">{{ product.brand }}</p>
+        <p class="product-price">{{ product.price }} руб.</p>
+        <p class="product-calories">Калории: {{ product.calories }} ккал</p>
+        
+        <a href="{% url 'add_to_cart' product.id %}">Добавить в корзину</a>
+    </div>
+</div>
+
+<style>
+.product-card {
+    border: 1px solid #e0e0e0;
+    width: 220px;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.product-image {
+    width: 190px;
+    height: 190px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+}
+
+.product-info {
+    text-align: center;
+}
+
+.product-name {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    height: 40px;
+    overflow: hidden;
+}
+
+.product-brand {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.product-price {
+    margin: 0 0 8px 0;
+    color: #2e7d32;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-calories {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 14px;
+    padding: 4px 8px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+a {
+    color: #4caf50;
+    text-decoration: none;
+}
+</style>

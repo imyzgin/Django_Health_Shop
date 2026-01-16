@@ -1,0 +1,112 @@
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <h1>Здоровое питание</h1>
+        </div>
+        
+        <div class="header-info">
+            <div class="contact-info">
+                <div class="address">Сургут</div>
+                <div class="phone">+7 900 900 00 99</div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="{% url 'cart' %}">Корзина</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="profile">
+                <a href="{% url 'login' %}">
+                    <img src="/media/prof.png" alt="Личный кабинет" class="profile-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+header {
+    background: #e8f5e9;
+    padding: 15px 0;
+    border-bottom: 1px solid #c8e6c9;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-info .address,
+.contact-info .phone {
+    font-size: 14px;
+    text-align: right;
+    color: #4caf50;
+    font-weight: 500;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #2e7d32;
+}
+
+.profile-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #c8e6c9;
+    padding: 2px;
+    background-color: white;
+}
+
+.profile-icon:hover {
+    border-color: #4caf50;
+}
+</style>

@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cart-container">
+    <h1>Корзина</h1>
+    
+    {% if user.is_authenticated %}
+        <p class="welcome">Добро пожаловать, {{ user.username }}!</p>
+        
+        {% if cart_items %}
+            <h2>Товары:</h2>
+            
+            <div class="cart-items-grid">
+                {% for item in cart_items %}
+                <div class="cart-item">
+                    {% include "components/cards/card.html" with product=item.product %}
+                    
+                    <div class="cart-item-controls">
+                        <p class="quantity">Количество: {{ item.quantity }}</p>
+                        
+                        <div class="buttons">
+                            <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-decrease">-</a>
+                            <a href="{% url 'increase_quantity' item.id %}" class="btn btn-increase">+</a>
+                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-remove">Удалить</a>
+                        </div>
+                        
+                        <p class="total-price"><strong>Итого: {{ item.get_total_price }} руб.</strong></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        {% else %}
+            <p class="empty-cart">Корзина пуста</p>
+        {% endif %}
+        
+    {% else %}
+        <p class="auth-required">Для просмотра корзины <a href="{% url 'login' %}">войдите</a></p>
+    {% endif %}
+    
+    <p class="back-link"><a href="/" class="back-btn">На главную</a></p>
+</div>
+
+<style>
+.cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin: 30px 0 20px 0;
+}
+
+.welcome {
+    background-color: #e8f5e9;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.cart-items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cart-item {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    background-color: white;
+}
+
+.cart-item-controls {
+    margin-top: 15px;
+}
+
+.quantity {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.buttons {
+    margin: 10px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.btn-decrease {
+    background-color: #ff9800;
+    color: white;
+}
+
+.btn-increase {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btn-remove {
+    background-color: #f44336;
+    color: white;
+}
+
+.total-price {
+    margin-top: 10px;
+    color: #2e7d32;
+    font-size: 16px;
+}
+
+.empty-cart,
+.auth-required {
+    color: #666;
+    padding: 40px 0;
+    font-size: 18px;
+}
+
+.auth-required a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.auth-required a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.back-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background-color: #2e7d32;
+}
+</style>
+{% endblock %}
